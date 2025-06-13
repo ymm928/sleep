@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <title>哄睡歌</title>
+  <meta charset="UTF-8">
+  <title>哄睡小站</title>
   <style>
     body {
-      margin: 0; 
-      height: 100vh; 
-      background: #111; 
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      color: #aaa; 
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .container {
-      text-align: center;
+      background-color: #fdf6f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
     }
     audio {
-      outline: none;
-      margin-top: 20px;
-      width: 300px;
+      display: none; /* 隐藏控制条 */
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>晚安，乖乖</h1>
-    <audio controls autoplay loop>
-      <source src="timemachine.mp3””痕迹器官.mp3" type="audio/mpeg" />
-      你的浏览器不支持音频播放。
-    </audio>
-  </div>
+  <audio id="player"></audio>
+
+  <script>
+    const playlist = ['timemachine.mp3', '痕迹器官.mp3']; // 你可以改成你自己的文件名
+    let index = 0;
+    const player = document.getElementById('player');
+
+    function playNext() {
+      player.src = playlist[index];
+      player.play();
+      index = (index + 1) % playlist.length;
+    }
+
+    player.addEventListener('ended', playNext);
+
+    playNext(); // 自动播放第一首
+  </script>
 </body>
 </html>
